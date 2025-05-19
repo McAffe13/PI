@@ -6,112 +6,166 @@
     <title>MK_Darmstadt · Dein Partner fuer Innovation</title>
     <meta name="description" content="MK_Darmstadt: Innovation, Service, Feedback, Community, FAQ, Chatbot und mehr. Entdecke die Experience!" />
     <link rel="icon" href="Logo.png" type="image/png">
+    <!-- Google Fonts for modern look -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <style>
         :root {
-            --main-bg: #f9f9f9;
+            --main-bg: linear-gradient(135deg, #eaf3fa 0%, #f9f9f9 100%);
             --main-fg: #222;
-            --accent: #2c3e50;
-            --primary: #2980b9;
-            --card-bg: #fff;
-            --card-shadow: 0 4px 16px rgba(44, 62, 80, 0.10);
+            --accent: #1976d2;
+            --primary: #00b8ff;
+            --card-bg: rgba(255,255,255,0.87);
+            --card-shadow: 0 4px 32px rgba(44, 62, 80, 0.13), 0 8px 24px rgba(0,184,255,0.07);
             --icon-bg: #eaf3fa;
-            --modal-bg: rgba(44, 62, 80, 0.28);
+            --modal-bg: rgba(44, 62, 80, 0.20);
             --highlight: #00d084;
             --star: #ffd700;
             --stat-up: #00c06a;
+            --glass: rgba(255,255,255,0.55);
         }
         html[data-theme='dark'] {
-            --main-bg: #181c21;
+            --main-bg: linear-gradient(135deg, #20242b 0%, #181c21 100%);
             --main-fg: #f3f3f3;
-            --accent: #bbe0f4;
+            --accent: #41e6ff;
             --primary: #10a6e0;
-            --card-bg: #20242b;
+            --card-bg: rgba(32,36,43,0.93);
             --icon-bg: #233348;
             --modal-bg: rgba(20,30,40,0.84);
             --highlight: #14f1c9;
+            --glass: rgba(32,36,43,0.67);
         }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            max-width: 1100px;
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            max-width: 1180px;
             margin: 32px auto 0 auto;
             padding: 0 18px 70px 18px;
             background: var(--main-bg);
             color: var(--main-fg);
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.4s, color 0.3s;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .toggle-btn {
+            position: fixed;
+            right: 24px; top: 18px;
+            z-index: 100;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 11px 22px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 14px rgba(44,62,80,0.13);
+            transition: background 0.2s, transform 0.18s;
+            outline: none;
+        }
+        .toggle-btn:hover {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+            transform: scale(1.09) rotate(-2deg);
         }
         header {
             text-align: center;
             margin-bottom: 28px;
+            position: relative;
+        }
+        .particle-bg {
+            position: absolute; left:0; top:0; width:100%; height:100%; z-index:-1; pointer-events:none;
         }
         .typing-hi {
             display: inline-block;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #2c3e50;
             letter-spacing: 2px;
             margin: 18px 0 8px 0;
             min-height: 48px;
-            background: linear-gradient(90deg, #2c3e50 60%, #2980b9 100%);
+            background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
             animation: bounce 1.2s infinite alternate;
+            filter: drop-shadow(0 2px 5px #fff8) drop-shadow(0 8px 16px var(--card-shadow));
         }
         @keyframes bounce {
             0%   { transform: translateY(0); }
-            100% { transform: translateY(-12px);}
+            100% { transform: translateY(-14px);}
         }
         .logo {
-            max-width: 110px;
+            max-width: 116px;
             height: auto;
             margin: 14px auto 8px auto;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.13);
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(44,62,80,0.16), 0 1px 2px #9ef4;
             display: block;
+            border: 2.5px solid var(--primary);
+            background: var(--glass);
+            backdrop-filter: blur(4.5px);
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        .logo:hover {
+            box-shadow: 0 12px 28px 0 var(--primary), 0 8px 32px rgba(44, 62, 80, 0.17);
+            border: 3px solid var(--highlight);
         }
         h1 {
             color: var(--accent);
-            font-size: 2.2rem;
+            font-size: 2.38rem;
             margin-bottom: 8px;
             letter-spacing: 1px;
+            text-shadow: 0 2px 16px var(--primary), 0 1px 2px #fff8;
         }
         .intro {
-            font-size: 1.18rem;
+            font-size: 1.22rem;
             margin-bottom: 24px;
+            color: #555;
+            background: var(--glass);
+            border-radius: 8px;
+            display: inline-block;
+            padding: 6px 18px;
         }
         .stat-bar {
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 42px;
             margin-bottom: 18px;
             flex-wrap: wrap;
+            filter: drop-shadow(0 2px 8px var(--primary));
         }
         .stat {
-            background: var(--icon-bg);
+            background: linear-gradient(120deg, var(--icon-bg) 70%, #fff1 100%);
             color: var(--accent);
-            border-radius: 8px;
-            padding: 15px 22px;
-            min-width: 110px;
+            border-radius: 12px;
+            padding: 22px 29px;
+            min-width: 120px;
             text-align: center;
-            font-size: 1.32rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            font-size: 1.55rem;
+            font-weight: 700;
+            box-shadow: 0 2px 16px var(--card-shadow), 0 1px 2px #eaf3fa;
             margin-bottom: 6px;
             position: relative;
+            transition: background 0.22s, transform 0.18s;
+        }
+        .stat:hover {
+            background: linear-gradient(120deg, var(--primary) 50%, var(--icon-bg) 100%);
+            color: #fff;
+            transform: scale(1.07) rotate(-1deg);
         }
         .stat-label {
             display: block;
-            color: var(--main-fg);
-            font-size: 1.01rem;
+            color: #444;
+            font-size: 1.07rem;
             margin-top: 3px;
             font-weight: 400;
+            letter-spacing: 0.5px;
         }
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 52px;
+            margin-bottom: 48px;
+            margin-top: 10px;
         }
         @media (max-width: 990px) {
             .main-grid {
@@ -121,157 +175,179 @@
         .card {
             background: var(--card-bg);
             box-shadow: var(--card-shadow);
-            border-radius: 10px;
-            padding: 22px 18px 18px 18px;
-            margin-bottom: 30px;
+            border-radius: 16px;
+            padding: 35px 24px 26px 24px;
+            margin-bottom: 34px;
             text-align: center;
             transition: transform 0.23s, box-shadow 0.23s, background 0.2s;
             cursor: pointer;
             position: relative;
             z-index: 1;
+            border: 2px solid transparent;
+            backdrop-filter: blur(2.5px);
         }
         .card:active, .card:focus {
             background: #f0f6fb;
         }
         .card:hover {
-            transform: translateY(-8px) scale(1.035) rotate(-1deg);
-            box-shadow: 0 12px 44px 0 rgba(0,208,132,0.17), 0 8px 32px rgba(44, 62, 80, 0.18);
-            border: 1.5px solid var(--highlight);
+            transform: translateY(-14px) scale(1.045) rotate(-2deg);
+            box-shadow: 0 16px 48px 0 var(--primary), 0 8px 32px var(--card-shadow);
+            border: 2.5px solid var(--highlight);
+            background: linear-gradient(115deg, var(--card-bg) 80%, #f0f6fb 100%);
         }
         .services {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 18px;
+            gap: 22px;
             margin: 14px 0 0 0;
         }
         .service {
-            background: var(--icon-bg);
-            border-radius: 8px;
-            padding: 14px 18px;
-            width: 170px;
+            background: linear-gradient(108deg, var(--glass) 70%, #fff4 100%);
+            border-radius: 14px;
+            padding: 16px 20px;
+            width: 180px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            box-shadow: 0 4px 12px var(--card-shadow);
             margin-bottom: 8px;
             transition: background 0.2s, transform 0.17s;
+            border: 2px solid #eaf3fa;
+            cursor: pointer;
         }
         .service:hover {
-            background: #d4e8fa;
-            transform: scale(1.09) rotate(2deg);
+            background: linear-gradient(108deg, var(--highlight) 40%, var(--glass) 100%);
+            transform: scale(1.13) rotate(4deg);
+            color: #fff;
+            border: 2px solid var(--primary);
         }
         .service-icon {
-            font-size: 2.1rem;
+            font-size: 2.35rem;
             margin-bottom: 7px;
+            text-shadow: 0 1px 8px var(--primary);
+            animation: pulse 2.8s infinite;
+        }
+        @keyframes pulse {
+            0% { filter: brightness(1);}
+            40% { filter: brightness(1.3);}
+            100% { filter: brightness(1);}
         }
         .service-title {
             font-weight: 600;
             margin-bottom: 3px;
             color: var(--accent);
+            letter-spacing: 0.5px;
         }
         .service-desc {
-            font-size: 0.99rem;
+            font-size: 1.03rem;
         }
         .team-list {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 35px;
             flex-wrap: wrap;
             margin-top: 13px;
         }
         .team-member {
-            width: 120px;
+            width: 132px;
             text-align: center;
-            padding: 10px 4px;
-            transition: transform 0.17s;
+            padding: 14px 4px;
+            transition: transform 0.17s, box-shadow 0.2s;
+            border-radius: 14px;
+            background: var(--glass);
+            box-shadow: 0 2px 12px #bbe0f433;
         }
         .team-member:hover {
-            transform: scale(1.07) rotate(-2deg);
+            transform: scale(1.11) rotate(-2deg);
+            box-shadow: 0 8px 38px 0 var(--primary), 0 2px 8px #bbe0f4aa;
         }
         .team-avatar {
-            width: 66px;
-            height: 66px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 7px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.12);
+            box-shadow: 0 2px 12px var(--primary);
             border: 3px solid #eaf3fa;
         }
         .team-name {
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1px;
         }
         .team-role {
-            font-size: 0.92rem;
+            font-size: 1.01rem;
             color: #666;
         }
         .testimonials {
             display: flex;
-            gap: 14px;
+            gap: 22px;
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 8px;
         }
         .testimonial {
-            background: #f6fafc;
-            border-radius: 9px;
-            padding: 12px 16px 10px 16px;
-            max-width: 220px;
+            background: linear-gradient(110deg, #f6fafc 80%, #eaf3fa 100%);
+            border-radius: 19px;
+            padding: 18px 22px 14px 20px;
+            max-width: 270px;
             min-width: 160px;
-            font-size: 0.98rem;
-            box-shadow: 0 2px 6px rgba(44,62,80,0.08);
+            font-size: 1.02rem;
+            box-shadow: 0 2px 12px var(--primary), 0 1px 4px #eaf3faa0;
             border-left: 4px solid var(--primary);
-            transition: transform 0.2s;
+            transition: transform 0.22s, background 0.18s, border-left 0.18s;
+            position: relative;
         }
         .testimonial:hover {
-            transform: scale(1.09) rotate(1.2deg);
+            transform: scale(1.13) rotate(1.6deg);
             border-left-color: var(--highlight);
+            background: linear-gradient(110deg, var(--highlight) 25%, #eaf3fa 100%);
+            color: #fff;
         }
         .testimonial-author {
-            margin-top: 6px;
-            font-size: 0.93rem;
+            margin-top: 8px;
+            font-size: 1.01rem;
             color: var(--primary);
-            font-weight: 500;
+            font-weight: 600;
         }
         .feedback-btn {
-            background: var(--highlight);
+            background: linear-gradient(90deg, var(--highlight) 60%, var(--primary) 100%);
             color: #fff;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            padding: 10px 28px;
+            border-radius: 9px;
+            font-size: 1.08rem;
+            padding: 12px 32px;
             margin: 18px 0 0 0;
             cursor: pointer;
-            box-shadow: 0 2px 7px rgba(0,208,132,0.10);
-            font-weight: 600;
+            box-shadow: 0 2px 10px var(--highlight);
+            font-weight: 700;
             letter-spacing: 1px;
             transition: background 0.16s, transform 0.15s;
         }
         .feedback-btn:hover {
-            background: #00c06a;
-            transform: scale(1.08);
+            background: var(--accent);
+            transform: scale(1.09) rotate(-2deg);
         }
         .btn, .chatbot-btn {
             display: inline-block;
-            padding: 12px 32px;
-            background: var(--primary);
-            color: var(--btn-fg);
+            padding: 15px 34px;
+            background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+            color: #fff;
             border: none;
-            border-radius: 6px;
-            font-size: 1.05rem;
-            font-weight: 500;
+            border-radius: 9px;
+            font-size: 1.09rem;
+            font-weight: 600;
             letter-spacing: 0.5px;
             margin-top: 18px;
             cursor: pointer;
             transition: background 0.22s, transform 0.2s;
             text-decoration: none;
-            box-shadow: 0 2px 6px rgba(44,62,80,0.10);
-            animation: btn-bounce 1.8s infinite;
+            box-shadow: 0 2px 10px var(--primary);
+            animation: btn-bounce 1.6s infinite;
         }
         .btn:hover, .btn:focus, .chatbot-btn:hover, .chatbot-btn:focus {
-            background: var(--accent);
-            transform: scale(1.06);
+            background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
+            transform: scale(1.08);
         }
         .chatbot-btn {
             background: #222;
@@ -279,47 +355,51 @@
             animation: none;
             margin-top: 9px;
             margin-bottom: 7px;
-            font-size: 0.97rem;
-            padding: 8px 19px;
+            font-size: 1.01rem;
+            padding: 10px 24px;
+            border: 2px solid var(--primary);
         }
         @keyframes btn-bounce {
             0%, 100% { transform: translateY(0);}
-            50% { transform: translateY(-5px);}
+            50% { transform: translateY(-7px);}
         }
         .faq-section {
-            margin: 50px 0 30px 0;
-            background: var(--icon-bg);
-            border-radius: 12px;
-            padding: 30px 18px;
+            margin: 52px 0 32px 0;
+            background: linear-gradient(90deg, var(--icon-bg) 40%, #fff4 100%);
+            border-radius: 16px;
+            padding: 36px 24px;
+            box-shadow: 0 2px 12px var(--card-shadow);
         }
         .faq-title {
-            font-size: 1.3rem;
+            font-size: 1.45rem;
             color: var(--accent);
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
         }
         .faq-item {
             background: var(--card-bg);
-            border-radius: 6px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            border-radius: 10px;
+            margin-bottom: 11px;
+            box-shadow: 0 2px 12px var(--card-shadow);
         }
         .faq-q {
-            padding: 12px 13px;
-            font-weight: 600;
+            padding: 16px 15px;
+            font-weight: 700;
             cursor: pointer;
             color: var(--primary);
-            border-bottom: 1px solid #eaf3fa;
+            border-bottom: 1px solid var(--icon-bg);
             user-select: none;
             transition: background 0.2s;
+            font-size: 1.09rem;
         }
         .faq-q.open {
             background: #eaf3fa;
         }
         .faq-a {
-            padding: 11px 13px 13px 13px;
+            padding: 13px 15px 16px 15px;
             display: none;
-            font-size: 1.03em;
+            font-size: 1.09em;
             color: var(--main-fg);
         }
         .faq-a.open {
@@ -328,47 +408,55 @@
         }
         @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
         .timeline-section {
-            margin: 45px 0 30px 0;
+            margin: 48px 0 36px 0;
         }
         .timeline-title {
-            font-size: 1.3rem;
+            font-size: 1.33rem;
             color: var(--accent);
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
         }
         .timeline {
-            border-left: 3px solid var(--primary);
-            padding-left: 17px;
+            border-left: 4px solid var(--primary);
+            padding-left: 27px;
             margin-left: 15px;
         }
         .timeline-event {
-            margin-bottom: 25px;
+            margin-bottom: 32px;
             position: relative;
         }
         .timeline-event::before {
             content: '';
             position: absolute;
-            left: -24px;
-            top: 6px;
-            width: 13px;
-            height: 13px;
+            left: -30px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
             background: var(--highlight);
-            border: 2px solid #fff;
+            border: 2.5px solid #fff;
             border-radius: 50%;
             z-index: 3;
+            box-shadow: 0 2px 8px var(--primary);
+            animation: glow 3s infinite;
+        }
+        @keyframes glow {
+            0%,100% { box-shadow: 0 2px 8px var(--primary);}
+            50% { box-shadow: 0 0 26px var(--highlight);}
         }
         .timeline-year {
             font-weight: bold;
             color: var(--primary);
-            margin-bottom: 3px;
+            margin-bottom: 5px;
+            font-size: 1.07rem;
         }
         .timeline-desc {
-            font-size: 1.04em;
+            font-size: 1.07em;
         }
         .social-footer {
-            margin-top: 34px;
+            margin-top: 38px;
             text-align: center;
-            font-size: 1.09em;
+            font-size: 1.13em;
             color: #999;
         }
         .social-footer a {
@@ -376,25 +464,47 @@
             margin: 0 7px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2em;
-            transition: color 0.15s;
+            font-size: 1.32em;
+            transition: color 0.15s, transform 0.15s;
         }
-        .social-footer a:hover { color: var(--highlight);}
-        /* Responsive */
+        .social-footer a:hover { color: var(--highlight); transform: scale(1.22) rotate(-7deg);}
         @media (max-width: 700px) {
-            .stat-bar { gap: 10px;}
+            .stat-bar { gap: 12px;}
             .main-grid { grid-template-columns: 1fr; }
+            .services { gap: 8px;}
         }
         @media (max-width: 480px) {
-            .typing-hi { font-size: 1.2rem; min-height: 26px;}
-            h1 { font-size: 1.08rem;}
+            .typing-hi { font-size: 1.21rem; min-height: 26px;}
+            h1 { font-size: 1.09rem;}
             .modal { padding: 12px 2px 9px 2px;}
         }
-        /* Modal und Chatbot Styles wie gehabt - siehe bisherigen Code */
+        /* Modal und Chatbot Styles wie gehabt... (kannst du nach Wunsch weiter stylen) */
+        /* Add cool animated background particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle.p1 { width:220px;height:220px; background:var(--primary); top:16%; left:3%; animation: float1 16s infinite;}
+        .particle.p2 { width:110px;height:110px; background:var(--highlight); top:68%; left:12%; animation: float2 18s infinite;}
+        .particle.p3 { width:170px;height:170px; background:var(--accent); top:51%; right:7%; animation: float3 21s infinite;}
+        .particle.p4 { width:80px;height:80px; background:var(--primary); top:7%; right:14%; animation: float4 23s infinite;}
+        @keyframes float1 { 0% {transform:translateY(0);} 50% {transform:translateY(30px);} 100% {transform:translateY(0);} }
+        @keyframes float2 { 0% {transform:translateY(0);} 50% {transform:translateY(-25px);} 100% {transform:translateY(0);} }
+        @keyframes float3 { 0% {transform:translateY(0);} 50% {transform:translateY(40px);} 100% {transform:translateY(0);} }
+        @keyframes float4 { 0% {transform:translateY(0);} 50% {transform:translateY(-22px);} 100% {transform:translateY(0);} }
     </style>
 </head>
 <body>
-    <button class="toggle-btn" id="toggleMode" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <div class="particle-bg">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+    </div>
+    <button class="toggle-btn" id="toggleMode" onclick="toggleTheme()">?? Dark Mode</button>
     <header>
         <span class="typing-hi" id="typingHi"></span>
         <img src="Logo.png" alt="Logo von MK_Darmstadt" class="logo" />
@@ -411,32 +521,32 @@
             <h2>Unsere Leistungen</h2>
             <div class="services">
                 <div class="service">
-                    <div class="service-icon">💡</div>
+                    <span class="material-icons-outlined service-icon">emoji_objects</span>
                     <div class="service-title">Innovationsberatung</div>
                     <div class="service-desc">Wir bringen frische Ideen und smarte Loesungen in Ihr Unternehmen.</div>
                 </div>
                 <div class="service">
-                    <div class="service-icon">🛠️</div>
+                    <span class="material-icons-outlined service-icon">build</span>
                     <div class="service-title">Technischer Service</div>
                     <div class="service-desc">Schnell, zuverlaessig und kompetent – fuer Ihre Technik immer da.</div>
                 </div>
                 <div class="service">
-                    <div class="service-icon">🌐</div>
+                    <span class="material-icons-outlined service-icon">public</span>
                     <div class="service-title">Digitale Loesungen</div>
                     <div class="service-desc">Von Webseiten bis Cloud – wir machen Sie fit fuer die Zukunft.</div>
                 </div>
                 <div class="service">
-                    <div class="service-icon">🤝</div>
+                    <span class="material-icons-outlined service-icon">diversity_3</span>
                     <div class="service-title">Kundenbetreuung</div>
                     <div class="service-desc">Persoenlich, erreichbar und engagiert – auf uns ist Verlass.</div>
                 </div>
                 <div class="service">
-                    <div class="service-icon">🔒</div>
+                    <span class="material-icons-outlined service-icon">security</span>
                     <div class="service-title">IT-Sicherheit</div>
                     <div class="service-desc">Sicherheit fuer Daten und Systeme, Beratung zu Cyber-Security.</div>
                 </div>
                 <div class="service">
-                    <div class="service-icon">📱</div>
+                    <span class="material-icons-outlined service-icon">smartphone</span>
                     <div class="service-title">App-Entwicklung</div>
                     <div class="service-desc">Mobile Apps und Webapps, individuell und modern.</div>
                 </div>
@@ -456,7 +566,7 @@
                     <div class="team-role">Technik & Support</div>
                 </div>
             </div>
-            <div style="margin-top:16px;font-size:1.04em;color:#666;">Wir wachsen stetig – neue Talente willkommen!</div>
+            <div style="margin-top:16px;font-size:1.09em;color:#666;">Wir wachsen stetig – neue Talente willkommen!</div>
         </section>
         <section class="card" tabindex="0" onclick="openModal('kunden')" aria-label="Kundenstimmen anzeigen">
             <h2>Was unsere Kunden sagen</h2>
@@ -538,10 +648,10 @@
     <footer>
         <div class="social-footer">
             Folge uns:
-            <a href="mailto:koch.moritz13@gmx.de" title="E-Mail">📧</a>
-            <a href="https://www.instagram.com/" target="_blank" title="Instagram">📸</a>
-            <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn">🔗</a>
-            <a href="https://www.twitter.com/" target="_blank" title="Twitter">🐦</a>
+            <a href="mailto:koch.moritz13@gmx.de" title="E-Mail"><span class="material-icons-outlined">email</span></a>
+            <a href="https://www.instagram.com/" target="_blank" title="Instagram"><span class="material-icons-outlined">photo_camera</span></a>
+            <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><span class="material-icons-outlined">link</span></a>
+            <a href="https://www.twitter.com/" target="_blank" title="Twitter"><span class="material-icons-outlined">twitter</span></a>
         </div>
         <div style="margin-top:13px;">
             &copy; 2025 MK_Darmstadt · Moritz | <a href="mailto:koch.moritz13@gmx.de">koch.moritz13@gmx.de</a>
@@ -554,15 +664,16 @@
         <div id="modalInner"></div>
       </div>
     </div>
-    <div class="chatbot-pop" id="chatbotPop">
-        <div class="chatbot-header">
+    <div class="chatbot-pop" id="chatbotPop" style="box-shadow:0 8px 44px var(--primary);border-radius:18px;backdrop-filter:blur(3px);">
+        <div class="chatbot-header" style="background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;border-radius:18px 18px 0 0;">
+            <span class="material-icons-outlined" style="vertical-align:middle;margin-right:8px;">smart_toy</span>
             MK_Darmstadt Chatbot
-            <button class="chatbot-close" onclick="closeChatbot()" aria-label="Chatbot schliessen">&times;</button>
+            <button class="chatbot-close" onclick="closeChatbot()" aria-label="Chatbot schliessen" style="float:right;background:none;border:none;color:#fff;font-size:1.5em;">&times;</button>
         </div>
         <div class="chatbot-body" id="chatbotBody"></div>
-        <form class="chatbot-input-bar" onsubmit="sendChatbot(event)">
-            <input class="chatbot-input" id="chatbotInput" autocomplete="off" placeholder="Deine Frage..." />
-            <button class="chatbot-send" type="submit">⮞</button>
+        <form class="chatbot-input-bar" onsubmit="sendChatbot(event)" style="display:flex;gap:6px;background:var(--icon-bg);border-radius:0 0 14px 14px;padding:10px;">
+            <input class="chatbot-input" id="chatbotInput" autocomplete="off" placeholder="Deine Frage..." style="flex:1;padding:10px 12px;border-radius:8px;border:1.5px solid var(--primary);font-size:1.09rem;">
+            <button class="chatbot-send" type="submit" style="background:var(--primary);color:#fff;border:none;font-size:1.25em;border-radius:7px;padding:0 18px;transition:background 0.18s;"><span class="material-icons-outlined">send</span></button>
         </form>
     </div>
     <script>
@@ -654,7 +765,7 @@
         if(segment === 'leistungen') {
             content = `
                 <h2 id="modalTitle">Mehr zu unseren Leistungen</h2>
-                <ul style="text-align:left;max-width:340px;margin:16px auto 0 auto;font-size:1.04rem;line-height:1.7;">
+                <ul style="text-align:left;max-width:340px;margin:16px auto 0 auto;font-size:1.08rem;line-height:1.7;">
                   <li><b>Innovationsberatung:</b> Individuelle Beratung fuer neue Geschaeftsideen und Optimierung Ihrer Prozesse.</li>
                   <li><b>Technischer Service:</b> Wartung, Support und Reparatur – immer zuverlaessig und schnell vor Ort.</li>
                   <li><b>Digitale Loesungen:</b> Webseiten, Cloud-Anbindung, Automatisierung und IT-Sicherheit aus einer Hand.</li>
@@ -669,32 +780,32 @@
                 <div style="display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin:18px 0;">
                   <div>
                     <img src="Moritz.jpg" alt="Moritz" style="width:68px;height:68px;border-radius:50%;border:2px solid #eaf3fa;object-fit:cover;box-shadow:0 2px 8px #bbc;">
-                    <div style="font-weight:600;margin-top:7px;">Moritz</div>
-                    <div style="font-size:0.97rem;color:#555;">Inhaber & Innovation</div>
+                    <div style="font-weight:700;margin-top:7px;">Moritz</div>
+                    <div style="font-size:1.01rem;color:#555;">Inhaber & Innovation</div>
                   </div>
                   <div>
                     <img src="Julian.jpg" alt="Julian" style="width:68px;height:68px;border-radius:50%;border:2px solid #eaf3fa;object-fit:cover;box-shadow:0 2px 8px #bbc;">
-                    <div style="font-weight:600;margin-top:7px;">Julian</div>
-                    <div style="font-size:0.97rem;color:#555;">Technik & Support</div>
+                    <div style="font-weight:700;margin-top:7px;">Julian</div>
+                    <div style="font-size:1.01rem;color:#555;">Technik & Support</div>
                   </div>
                 </div>
-                <div style="font-size:1.03rem;">Wir stehen fuer Innovation, Verlaesslichkeit und persoenlichen Service!</div>
+                <div style="font-size:1.09rem;">Wir stehen fuer Innovation, Verlaesslichkeit und persoenlichen Service!</div>
             `;
         } else if(segment === 'kunden') {
             content = `
                 <h2 id="modalTitle">Kundenstimmen</h2>
                 <div style="margin:20px 0 5px 0;">
-                  <div style="background:#f6fafc;border-radius:9px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;margin-bottom:12px;">
+                  <div style="background:#f6fafc;border-radius:13px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;margin-bottom:15px;">
                     "MK_Darmstadt hat unser Unternehmen auf ein neues Level gehoben. Top Service!"
-                    <div style="color:#2980b9;font-weight:500;margin-top:4px;font-size:0.96rem;">– Jana K.</div>
+                    <div style="color:#2980b9;font-weight:600;margin-top:4px;font-size:1.01rem;">– Jana K.</div>
                   </div>
-                  <div style="background:#f6fafc;border-radius:9px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;margin-bottom:12px;">
+                  <div style="background:#f6fafc;border-radius:13px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;margin-bottom:15px;">
                     "Schnell, freundlich und immer eine Loesung parat. Vielen Dank!"
-                    <div style="color:#2980b9;font-weight:500;margin-top:4px;font-size:0.96rem;">– Tobias M.</div>
+                    <div style="color:#2980b9;font-weight:600;margin-top:4px;font-size:1.01rem;">– Tobias M.</div>
                   </div>
-                  <div style="background:#f6fafc;border-radius:9px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;">
+                  <div style="background:#f6fafc;border-radius:13px;padding:12px 16px 10px 16px;box-shadow:0 2px 6px #d9e7f3;border-left:4px solid #2980b9;">
                     "Unsere Wunsch-Website war schneller online als gedacht. Klare Empfehlung."
-                    <div style="color:#2980b9;font-weight:500;margin-top:4px;font-size:0.96rem;">– Familie Weber</div>
+                    <div style="color:#2980b9;font-weight:600;margin-top:4px;font-size:1.01rem;">– Familie Weber</div>
                   </div>
                 </div>
             `;
@@ -702,36 +813,36 @@
             content = `
                 <h2 id="modalTitle">Kontakt & Newsletter</h2>
                 <form onsubmit="kontaktForm(event)" style="margin-bottom: 19px;">
-                    <input type="text" id="kontaktName" required placeholder="Ihr Name" style="margin-bottom:8px;width:90%;padding:9px;border-radius:5px;border:1px solid #c8d6e5;"><br>
-                    <input type="email" id="kontaktEmail" required placeholder="Ihre E-Mail" style="margin-bottom:8px;width:90%;padding:9px;border-radius:5px;border:1px solid #c8d6e5;"><br>
-                    <textarea id="kontaktNachricht" required placeholder="Ihre Nachricht" style="width:90%;min-height:54px;max-width:99%;font-size:1.07rem;padding:8px 7px;resize:vertical;border-radius:6px;border:1px solid #c8d6e5;"></textarea><br>
+                    <input type="text" id="kontaktName" required placeholder="Ihr Name" style="margin-bottom:8px;width:90%;padding:10px;border-radius:7px;border:1.5px solid #c8d6e5;"><br>
+                    <input type="email" id="kontaktEmail" required placeholder="Ihre E-Mail" style="margin-bottom:8px;width:90%;padding:10px;border-radius:7px;border:1.5px solid #c8d6e5;"><br>
+                    <textarea id="kontaktNachricht" required placeholder="Ihre Nachricht" style="width:90%;min-height:54px;max-width:99%;font-size:1.11rem;padding:11px 7px;resize:vertical;border-radius:8px;border:1.5px solid #c8d6e5;"></textarea><br>
                     <button type="submit" class="btn" style="margin-top:7px;">Abschicken</button>
                 </form>
                 <div id="kontaktSuccess" class="feedback-success" style="display:none;">Danke für Ihre Nachricht! Wir melden uns so schnell wie möglich.</div>
                 <p style="margin-top:15px;">Oder direkt eine Mail an <a href="mailto:koch.moritz13@gmx.de">koch.moritz13@gmx.de</a></p>
                 <p>Oder abonnieren Sie den Newsletter:</p>
                 <form onsubmit="newsletterThanks(event)" style="margin-top:8px;">
-                    <input type="email" id="newsletterMailModal" required placeholder="Ihre E-Mail" style="padding:9px 12px; border-radius:5px; border:1px solid #c8d6e5; font-size:1rem; width: 190px; margin-right:8px;">
-                    <button type="submit" class="btn" style="padding:9px 18px; font-size:0.98rem; animation:none;">Newsletter</button>
+                    <input type="email" id="newsletterMailModal" required placeholder="Ihre E-Mail" style="padding:10px 12px; border-radius:7px; border:1.5px solid #c8d6e5; font-size:1.09rem; width: 190px; margin-right:8px;">
+                    <button type="submit" class="btn" style="padding:10px 18px; font-size:1.01rem; animation:none;">Newsletter</button>
                 </form>
             `;
         } else if(segment === 'feedback') {
             content = `
                 <h2 id="modalTitle">Dein Feedback</h2>
                 <form id="feedbackForm" onsubmit="submitFeedback(event)" style="margin:18px 0 7px 0;">
-                    <div class="feedback-stars" id="feedbackStars">
+                    <div class="feedback-stars" id="feedbackStars" style="font-size:1.8em; margin-bottom:10px;">
                         <span class="star" data-star="1">&#9733;</span>
                         <span class="star" data-star="2">&#9733;</span>
                         <span class="star" data-star="3">&#9733;</span>
                         <span class="star" data-star="4">&#9733;</span>
                         <span class="star" data-star="5">&#9733;</span>
                     </div>
-                    <textarea id="feedbackInput" required maxlength="240" placeholder="Schreib uns dein Feedback..." style="width:98%;min-height:54px;max-width:99%;font-size:1.07rem;padding:8px 7px;resize:vertical;border-radius:6px;border:1px solid #c8d6e5;"></textarea>
+                    <textarea id="feedbackInput" required maxlength="240" placeholder="Schreib uns dein Feedback..." style="width:98%;min-height:54px;max-width:99%;font-size:1.09rem;padding:11px 7px;resize:vertical;border-radius:8px;border:1.5px solid #c8d6e5;"></textarea>
                     <br>
-                    <button type="submit" class="feedback-btn" style="margin-top:9px;">Absenden</button>
+                    <button type="submit" class="feedback-btn" style="margin-top:11px;">Absenden</button>
                 </form>
                 <div id="feedbackSuccess" class="feedback-success" style="display:none;"></div>
-                <h3 style="font-size:1.09rem;margin-top:18px;">Was andere sagen:</h3>
+                <h3 style="font-size:1.13rem;margin-top:18px;">Was andere sagen:</h3>
                 <ul class="feedback-list" id="feedbackList"></ul>
             `;
             setTimeout(loadFeedback, 200);
@@ -837,11 +948,11 @@
         var html = document.documentElement;
         if(html.getAttribute('data-theme')==='dark'){
             html.setAttribute('data-theme','light');
-            document.getElementById('toggleMode').innerHTML="🌙 Dark Mode";
+            document.getElementById('toggleMode').innerHTML="?? Dark Mode";
             localStorage.setItem('mkd_theme','light');
         } else {
             html.setAttribute('data-theme','dark');
-            document.getElementById('toggleMode').innerHTML="☀️ Light Mode";
+            document.getElementById('toggleMode').innerHTML="?? Light Mode";
             localStorage.setItem('mkd_theme','dark');
         }
     }
@@ -849,7 +960,7 @@
         var stored = localStorage.getItem('mkd_theme');
         if(stored==='dark'){
             document.documentElement.setAttribute('data-theme','dark');
-            document.getElementById('toggleMode').innerHTML="☀️ Light Mode";
+            document.getElementById('toggleMode').innerHTML="?? Light Mode";
         }
     })();
 
@@ -872,7 +983,7 @@
         else kidx=0;
         if(kidx===10){
             kidx=0;
-            alert("🎉 Easter Egg: Du hast den Konami-Code entdeckt!\nViel Spass bei MK_Darmstadt!");
+            alert("?? Easter Egg: Du hast den Konami-Code entdeckt!\nViel Spass bei MK_Darmstadt!");
         }
     });
 
@@ -882,7 +993,7 @@
         document.getElementById('chatbotInput').focus();
         setTimeout(()=>scrollChatbotBody(),100);
         if(!window._mkdBotWelcomed) {
-            chatbotBotMsg("Hallo 👋! Ich bin dein MK_Darmstadt Chatbot. Stelle mir Fragen zu Team, Leistungen, Kontakt, Preisen, Feedback, Witzen oder Funfacts!");
+            chatbotBotMsg("Hallo ??! Ich bin dein MK_Darmstadt Chatbot. Stelle mir Fragen zu Team, Leistungen, Kontakt, Preisen, Feedback, Witzen oder Funfacts!");
             window._mkdBotWelcomed = true;
         }
     }
@@ -923,18 +1034,18 @@
         let answer = "Sorry, das weiss ich leider nicht. Frag Moritz oder Julian oder probier es noch mal anders!";
         const funfacts = [
             "Darmstadt war 1997 die erste deutsche Stadt mit einer Webseite für alle Bürger.",
-            "MK_Darmstadt liebt Innovationen! 🚀",
+            "MK_Darmstadt liebt Innovationen! ??",
             "Unser Team besteht aus echten Technikfans.",
             "Wusstest du? Wir setzen viel auf Nachhaltigkeit.",
             "MK_Darmstadt hat schon ueber 60 Projekte umgesetzt!",
-            "Mit dem Dark Mode bleibt dir die Sonne erspart. 😎",
+            "Mit dem Dark Mode bleibt dir die Sonne erspart. ??",
             "Unser Team: Moritz und Julian – immer fuer dich da!"
         ];
         const jokes = [
-            "Warum koennen Geister so schlecht luegen? Weil man durch sie hindurchsieht! 👻",
-            "Was macht ein Pirat am Computer? Er drueckt die Enter-Taste! 🏴‍☠️",
-            "Warum sind Computer so gut im Singen? Weil sie die richtigen Noten haben! 🎵",
-            "Warum koennen Roboter keine Geheimnisse behalten? Weil sie alles speichern! 🤖"
+            "Warum koennen Geister so schlecht luegen? Weil man durch sie hindurchsieht! ??",
+            "Was macht ein Pirat am Computer? Er drueckt die Enter-Taste! ?????",
+            "Warum sind Computer so gut im Singen? Weil sie die richtigen Noten haben! ??",
+            "Warum koennen Roboter keine Geheimnisse behalten? Weil sie alles speichern! ??"
         ];
         q = q.toLowerCase();
         if(q.match(/(kontakt|email|erreichen|anschreiben)/)) {
@@ -946,23 +1057,23 @@
         } else if(q.match(/(preise|kosten|angebot|preis)/)) {
             answer = "Die Preise sind individuell. Schreib uns einfach – wir machen dir ein faires Angebot!";
         } else if(q.match(/(hi|hallo|servus|guten tag|gruesse|grüße|moin|hey)/)) {
-            answer = "Hallo! Wie kann ich helfen? 😊";
+            answer = "Hallo! Wie kann ich helfen? ??";
         } else if(q.match(/(leistungen|service|angebot|was bietet ihr)/)) {
             answer = "Wir bieten Innovationsberatung, Technik-Service, digitale Loesungen, App-Entwicklung, IT-Sicherheit und Kundenbetreuung.";
         } else if(q.match(/(projekte|referenzen|beispiele|kunden)/)) {
             answer = "Wir haben bereits ueber 60 Projekte erfolgreich umgesetzt!";
         } else if(q.match(/(feedback|bewertung|meinung)/)) {
-            answer = "Dein Feedback kannst du direkt im Feedback-Fenster abgeben! ⭐";
+            answer = "Dein Feedback kannst du direkt im Feedback-Fenster abgeben! ?";
         } else if(q.match(/(danke|cool|top|super|krass|genial|nice|gefällt)/)) {
-            answer = "Danke! Das freut mich sehr 😊";
+            answer = "Danke! Das freut mich sehr ??";
         } else if(q.match(/(witz|joke|lachen|scherz)/)) {
             answer = jokes[Math.floor(Math.random()*jokes.length)];
         } else if(q.match(/(funfact|fakt|fakten|wissen|tipp)/)) {
             answer = funfacts[Math.floor(Math.random()*funfacts.length)];
         } else if(q.match(/(dark|hell|mode|dunkel|theme|farbe)/)) {
-            answer = "Klicke oben rechts auf den Dark Mode Button, um das Design zu wechseln! 🌚 / 🌞";
+            answer = "Klicke oben rechts auf den Dark Mode Button, um das Design zu wechseln! ?? / ??";
         } else if(q.match(/(easter|konami|geheim|cheat)/)) {
-            answer = "Druecke auf deiner Tastatur: ↑ ↑ ↓ ↓ ← → ← → B A ... 😉";
+            answer = "Druecke auf deiner Tastatur: ? ? ? ? ? ? ? ? B A ... ??";
         }
         chatbotBotMsg(answer);
     }
