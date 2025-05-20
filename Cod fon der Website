@@ -1046,6 +1046,12 @@
             "Was macht ein Pirat am Computer? Er drueckt die Enter-Taste! ?????",
             "Warum sind Computer so gut im Singen? Weil sie die richtigen Noten haben! ??",
             "Warum koennen Roboter keine Geheimnisse behalten? Weil sie alles speichern! ??"
+            "Wie nennt man einen Käfer mit Fieber? - Ein Glühwürmchen.??"
+            "Was isst ein hungriger Maulwurf in einem Restaurant? - Ein 8-Gänge-Menü. ??"
+            "Was ist beige, sehr klebrig und wandert durch die Wüste? - Das Karamel, natürlich. ??"
+            "Die Zahl 8 und die Zahl 0 treffen sich. Da sagt die 0 zur 8: "Ohh, cooler Gürtel! ??"
+            "Wie kann man einen grünen Kaktus auch noch nennen? - Eine gut bewaffnete Gurke. ??"
+            
         ];
         q = q.toLowerCase();
         if(q.match(/(kontakt|email|erreichen|anschreiben)/)) {
